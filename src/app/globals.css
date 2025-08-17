@@ -1,0 +1,71 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/forms";
+@plugin "@tailwindcss/typography";
+@plugin "tailwindcss-animate";
+
+/* ===== Tailwind v4 — дизайн-токени ===== */
+@theme {
+  /* Брендові кольори */
+  --color-ink: #0f1115;
+  --color-slate: #181b22;
+  --color-steel: #232833;
+  --color-aqua: #39d0ff;
+
+  --color-platinum-50:  #f7f7f8;
+  --color-platinum-100: #efeff0;
+  --color-platinum-200: #e8e7e9;
+  --color-platinum-300: #e0dfe2;
+  --color-platinum-400: #d9d8db;
+  --color-platinum-500: #cfcfd3;
+  --color-platinum-600: #b9bac0;
+  --color-platinum-700: #9a9ca5;
+  --color-platinum-800: #7a7d87;
+  --color-platinum-900: #565a64;
+
+  /* Семантичні токени для shadcn/ui */
+  --color-background: var(--color-ink);
+  --color-foreground: var(--color-platinum-100);
+
+  --color-card: var(--color-slate);
+  --color-card-foreground: var(--color-platinum-100);
+
+  --color-popover: var(--color-slate);
+  --color-popover-foreground: var(--color-platinum-100);
+
+  --color-primary: var(--color-aqua);
+  --color-primary-foreground: var(--color-ink);
+
+  --color-secondary: var(--color-steel);
+  --color-secondary-foreground: var(--color-platinum-100);
+
+  --color-muted: #1b202a;
+  --color-muted-foreground: var(--color-platinum-300);
+
+  --color-accent: #1b202a;
+  --color-accent-foreground: var(--color-platinum-100);
+
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #ffffff;
+
+  --color-border: #2b313d;
+  --color-input: #2b313d;
+  --color-ring: var(--color-aqua);
+}
+
+/* ===== База проєкту ===== */
+:root { --radius: 1.25rem; }
+html, body { height: 100%; }
+
+/* Використовуємо семантичні токени */
+body { @apply bg-background text-foreground antialiased; }
+
+/* За замовчуванням колір бордерів для всіх елементів */
+@layer base {
+  * { @apply border-border; }
+}
+
+/* Скляні картки */
+.glass {
+  @apply bg-white/5 border border-border backdrop-blur-xl;
+  box-shadow: 0 1px 0 0 rgba(255,255,255,.08) inset, 0 10px 30px rgba(0,0,0,.35);
+}
