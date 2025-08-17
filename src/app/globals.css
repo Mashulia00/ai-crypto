@@ -3,6 +3,8 @@
 @plugin "@tailwindcss/typography";
 @plugin "tailwindcss-animate";
 
+
+
 /* ===== Tailwind v4 — дизайн-токени ===== */
 @theme {
   /* Брендові кольори */
