@@ -1,49 +1,74 @@
 "use client";
 
 import Link from "next/link";
+import { useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { H1, Lead, Accent } from "@/components/visual/Heading";
-import { TextReveal } from "@/components/visual/TextReveal";
-import { SectionReveal } from "@/components/visual/SectionReveal";
 
 export default function Hero() {
+  const wrapRef = useRef<HTMLDivElement>(null);
+
+  // неонова аура за курсором/пальцем (легка, mobile-first)
+  const onMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    const el = e.currentTarget;
+    const r = el.getBoundingClientRect();
+    el.style.setProperty("--mx", `${((e.clientX - r.left) / r.width) * 100}%`);
+    el.style.setProperty("--my", `${((e.clientY - r.top) / r.height) * 100}%`);
+  };
+  const onLeave = (e: React.PointerEvent<HTMLDivElement>) => {
+    const el = e.currentTarget;
+    el.style.removeProperty("--mx");
+    el.style.removeProperty("--my");
+  };
+
   return (
     <section className="relative overflow-hidden">
-      {/* aura фон */}
+      {/* аури/градієнти + реакція на курсор */}
       <div
-        aria-hidden
-        className="pointer-events-none absolute -inset-24 opacity-50"
-        style={{
-          background:
-            "radial-gradient(600px 300px at 20% 10%, rgba(57,208,255,.08), transparent 60%)",
-        }}
-      />
-      <div className="mx-auto max-w-6xl px-4 pt-16 pb-8">
-        <SectionReveal>
-          <H1>
-            <TextReveal
-              text="ШІ-бот, що торгує 24/7. Прозоро. З"
-              by="word"
-              className="block"
-            />
-            <span className="block">
-              <Accent>ризик-менеджментом.</Accent>
+        ref={wrapRef}
+        onPointerMove={onMove}
+        onPointerLeave={onLeave}
+        className="hero-auras"
+      >
+        <div className="mx-auto max-w-6xl px-4 pt-16 pb-10">
+          <h1 className="headline-glow text-balance text-5xl/tight font-extrabold sm:text-6xl/tight md:text-7xl/tight">
+            <span>ШІ-бот, що торгує&nbsp;</span>
+            <span className="inline-block relative">
+              24/7
+              <i aria-hidden className="mark-bar" />
             </span>
-          </H1>
-          <Lead className="mt-6 max-w-3xl">
-            Алгоритмічні стратегії з машинним навчанням допомагають автоматизувати
-            рутинні рішення та дисципліновано працювати з ризиком.
-          </Lead>
+            <br className="hidden sm:block" />
+            <span>Прозоро</span>
+            <br className="hidden sm:block" />
+            <span>
+              З&nbsp;<b className="accent-word">ризик-менеджментом</b>
+            </span>
+          </h1>
 
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Button asChild className="bg-aqua text-ink hover:opacity-90">
-              <Link href="/contact">Спробувати демо</Link>
-            </Button>
-            <Button asChild variant="outline" className="border-white/10">
-              <Link href="/how-it-works">Дізнатися як це працює</Link>
-            </Button>
+          {/* неоновий “скан” під заголовком */}
+          <div className="hero-surge mt-4" />
+
+          <p className="mt-5 max-w-3xl text-lg text-platinum-200/90 md:text-xl">
+            Алгоритмічні стратегії з машинним навчанням допомагають
+            автоматизувати рутинні рішення та дисципліновано працювати з
+            ризиком.
+          </p>
+
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Link href="/contact">
+              <Button className="bg-aqua text-ink hover:opacity-90 btn-ripple">
+                Спробувати демо
+              </Button>
+            </Link>
+            <Link href="/how-it-works">
+              <Button
+                variant="outline"
+                className="glass border-white/10 btn-ripple"
+              >
+                Дізнатися як це працює
+              </Button>
+            </Link>
           </div>
-        </SectionReveal>
+        </div>
       </div>
     </section>
   );
