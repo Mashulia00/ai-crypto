@@ -10,7 +10,7 @@ export default function LogoWall() {
           <span key={i} className="mx-6 inline-block text-platinum-300">{l}</span>
         ))}
       </div>
-      {/* keyframes: додамо інлайн, щоб не лізти у tailwind.config */}
+      {/**/}
       <style jsx>{`
         @keyframes marquee {
           0% { transform: translateX(0%); }

@@ -12,7 +12,7 @@ export function FeatureCard({ icon, title, desc }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const [shown, setShown] = useState(false);
 
-  // Плавна поява коли картка в полі зору
+  // Smooth appearance when the card is in view
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
@@ -29,7 +29,7 @@ export function FeatureCard({ icon, title, desc }: Props) {
     return () => io.disconnect();
   }, []);
 
-  // Tap ripple + натиск
+  // Tap ripple + press
   function onPointerDown(e: React.PointerEvent<HTMLDivElement>) {
     const el = ref.current;
     if (!el) return;
@@ -38,7 +38,7 @@ export function FeatureCard({ icon, title, desc }: Props) {
     el.style.setProperty("--px", `${e.clientX - r.left}px`);
     el.style.setProperty("--py", `${e.clientY - r.top}px`);
     el.classList.add("pressed");
-    // легка вібрація якщо доступна
+    // light vibration if available
     try {
       // @ts-ignore
       navigator.vibrate?.(8);

@@ -28,14 +28,14 @@ export function DashboardClient() {
       .catch(() => setPerf(null));
   }, []);
 
-  // ---- МАПІНГ під ChartPnL (очікує { t, pnl }) ----
+  // ---- mapping for ChartPnL (expects { t, pnl }) ----
   const pnlPoints: PnLPoint[] = (perf?.pnl ?? []).map((p) => ({
     t: p.t,
     pnl: p.value,
   }));
   const lastPnlValue = perf?.pnl.at(-1)?.value ?? 0;
 
-  // демо-позиції і угоди
+  // demo positions and trades
   const positions: Position[] = useMemo(() => {
     const mark = prices?.candles.at(-1)?.c ?? 60000;
     return [
@@ -100,19 +100,19 @@ export function DashboardClient() {
 
   return (
     <div className="mx-auto max-w-6xl px-6 py-10">
-      <h1 className="text-3xl font-semibold">Дашборд (демо-дані)</h1>
+      <h1 className="text-3xl font-semibold">Dashboard (demo data)</h1>
       <p className="mt-2 text-platinum-300">
-        Баланс/позиції/графіки. Всі числа умовні — для демонстрації.
+        Balance, positions, charts All numbers are illustrative for demo purposes only
       </p>
 
       {/* Top stats */}
       <div className="mt-6 grid gap-4 sm:grid-cols-3">
         <div className="glass rounded-2xl p-4">
-          <div className="text-sm text-platinum-300">Баланс</div>
+          <div className="text-sm text-platinum-300">Balance</div>
           <div className="text-2xl font-semibold">$10,000</div>
         </div>
         <div className="glass rounded-2xl p-4">
-          <div className="text-sm text-platinum-300">Поточна еквіті</div>
+          <div className="text-sm text-platinum-300">Current Equity</div>
           <div className="text-2xl font-semibold">
             ${(10000 + lastPnlValue).toFixed(2)}
           </div>
@@ -127,23 +127,23 @@ export function DashboardClient() {
 
       {/* Charts */}
       <div className="mt-6 grid gap-6 md:grid-cols-2">
-        <ChartPrice data={prices?.candles ?? []} title="BTC/USDT Close (демо)" />
+        <ChartPrice data={prices?.candles ?? []} title="BTC/USDT Close (demo)" />
         <ChartPnL data={pnlPoints} />
       </div>
 
       {/* Positions */}
-      <h2 className="mt-10 text-2xl font-semibold">Відкриті позиції</h2>
+      <h2 className="mt-10 text-2xl font-semibold">Open Positions</h2>
       <div className="mt-3 overflow-x-auto glass rounded-2xl">
         <table className="min-w-full text-sm">
           <thead className="text-left text-platinum-300">
             <tr className="border-b border-white/10">
-              <th className="px-4 py-3">Символ</th>
-              <th className="px-4 py-3">Сторона</th>
-              <th className="px-4 py-3">Кількість</th>
+              <th className="px-4 py-3">Symbol</th>
+              <th className="px-4 py-3">Side</th>
+              <th className="px-4 py-3">Quantity</th>
               <th className="px-4 py-3">Entry</th>
               <th className="px-4 py-3">Mark</th>
               <th className="px-4 py-3">PnL</th>
-              <th className="px-4 py-3">Ризик</th>
+              <th className="px-4 py-3">Risk</th>
             </tr>
           </thead>
           <tbody>
@@ -165,17 +165,17 @@ export function DashboardClient() {
       </div>
 
       {/* Trades */}
-      <h2 className="mt-10 text-2xl font-semibold">Історія угод</h2>
+      <h2 className="mt-10 text-2xl font-semibold">Trade History</h2>
       <div className="mt-3 overflow-x-auto glass rounded-2xl">
         <table className="min-w-full text-sm">
           <thead className="text-left text-platinum-300">
             <tr className="border-b border-white/10">
-              <th className="px-4 py-3">Час</th>
-              <th className="px-4 py-3">Символ</th>
-              <th className="px-4 py-3">Сторона</th>
-              <th className="px-4 py-3">Кількість</th>
-              <th className="px-4 py-3">Ціна</th>
-              <th className="px-4 py-3">Комісія</th>
+              <th className="px-4 py-3">Time</th>
+              <th className="px-4 py-3">Symbol</th>
+              <th className="px-4 py-3">Side</th>
+              <th className="px-4 py-3">Quantity</th>
+              <th className="px-4 py-3">Price</th>
+              <th className="px-4 py-3">Fee</th>
               <th className="px-4 py-3">PnL</th>
             </tr>
           </thead>

@@ -1,0 +1,56 @@
+{
+  "Nav": {
+    "how": "How it works",
+    "performance": "Performance",
+    "blog": "Blog",
+    "pricing": "Pricing",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "cta": "Request a demo",
+    "switch": "RU"
+  },
+  "Hero": {
+    "h1_1": "AI bot that trades 24/7",
+    "h1_2": "Transparent",
+    "h1_3": "with risk management",
+    "p": "Algorithmic strategies powered by machine learning help automate routine decisions and enforce disciplined risk management.",
+    "cta_demo": "Request a demo",
+    "cta_learn": "Learn how it works"
+  },
+  "Pricing": {
+    "title": "Pricing",
+    "pitch": "Straightforward and transparent. All data shown on the website are demo.",
+    "billing": "Billing period",
+    "monthly": "Monthly",
+    "yearly": "Yearly (-20%)",
+    "recommended": "Recommended",
+    "pay": "Pay with crypto",
+    "details": "Details",
+    "trial_free": "Free",
+    "trial_days": "/3 days",
+    "trial_btn": "Start free trial",
+    "trial_activating": "Activating…",
+    "trial_activated": "Activated",
+    "trial_ok": "Trial activated. Reload the page if features don’t appear.",
+    "trial_err": "Something went wrong. Please try again.",
+    "disclaimer": "* Crypto payments. We support Binance, Coinbase, Kraken, OKX, Bybit and wallets (MetaMask/others). After successful payment, access is enabled automatically or within 24h (demo mode).",
+    "plan": {
+      "starter": "Starter",
+      "pro": "Pro",
+      "institutional": "Institutional"
+    },
+    "feature": {
+      "starter_1": "Demo dashboard (read-only)",
+      "starter_2": "Trade journal (placeholder)",
+      "starter_3": "Default risk parameters",
+      "pro_1": "Full dashboard (demo data)",
+      "pro_2": "PnL / DD / WinRate metrics",
+      "pro_3": "Export reports (placeholder)",
+      "pro_4": "Read-only API keys",
+      "inst_1": "Custom metrics/reports",
+      "inst_2": "Pilot with the team (overview)",
+      "inst_3": "Integration support",
+      "inst_4": "SLA & priority updates"
+    }
+  }
+}

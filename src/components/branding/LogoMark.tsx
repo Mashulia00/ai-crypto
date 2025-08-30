@@ -4,7 +4,7 @@ import Image from "next/image";
 import clsx from "clsx";
 
 type Props = {
-  size?: number;              // розмір у px (висота/ширина)
+  size?: number;            
   className?: string;
   priority?: boolean;
 };

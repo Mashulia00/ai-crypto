@@ -20,7 +20,7 @@ export function NewsletterForm({ className, compact }: Props) {
     const parsed = schema.safeParse({ email });
     if (!parsed.success) {
       setStatus("error");
-      setMsg("Введіть коректний email");
+      setMsg("Enter a valid email");
       return;
     }
     setStatus("loading");
@@ -34,18 +34,18 @@ export function NewsletterForm({ className, compact }: Props) {
       if (!r.ok) {
         const j = await r.json().catch(() => ({}));
         setStatus("error");
-        setMsg(j?.message ?? "Сталася помилка, спробуйте ще.");
+        setMsg(j?.message ?? "An error occurred please try again");
         return;
       }
       setStatus("ok");
-      setMsg("Готово! Перевірте скриньку 🙂");
+      setMsg("Done Check your inbox 🙂");
       (window as any).plausible?.("newsletter_subscribe", {
         props: { email },
       });
       setEmail("");
     } catch {
       setStatus("error");
-      setMsg("Мережева помилка, спробуйте ще.");
+      setMsg("Network error please try again");
     }
   }
 
@@ -68,7 +68,7 @@ export function NewsletterForm({ className, compact }: Props) {
         className="bg-aqua text-ink hover:opacity-90"
         disabled={status === "loading"}
       >
-        {status === "loading" ? "Відправляю…" : "Підписатися"}
+        {status === "loading" ? "Sending…" : "Subscribe"}
       </Button>
 
       {status !== "idle" && (

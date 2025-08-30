@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -23,23 +24,23 @@ export function DemoForm() {
       });
       if (res.ok) {
         setStatus("ok");
-        setMsg("Дякуємо! Ми зв'яжемося з вами найближчим часом.");
+        setMsg("Thank you We will contact you shortly");
         form.reset();
       } else {
         const j = await res.json().catch(() => ({}));
         setStatus("error");
-        setMsg(j?.errors ? "Перевірте поля форми." : "Сталася помилка. Спробуйте ще раз.");
+        setMsg(j?.errors ? "Check the form fields" : "An error occurred Please try again");
       }
     } catch {
       setStatus("error");
-      setMsg("Сталася помилка мережі.");
+      setMsg("A network error occurred");
     }
   }
 
   return (
     <form onSubmit={onSubmit} className="mt-6 space-y-4">
       <div>
-        <label className="block text-sm mb-1">Ваше ім’я</label>
+        <label className="block text-sm mb-1">Your name</label>
         <input name="name" className="w-full rounded-xl bg-transparent border px-3 py-2" />
       </div>
       <div>
@@ -47,18 +48,19 @@ export function DemoForm() {
         <input name="email" type="email" required className="w-full rounded-xl bg-transparent border px-3 py-2" />
       </div>
       <div>
-        <label className="block text-sm mb-1">Коментар</label>
+        <label className="block text-sm mb-1">Comment</label>
         <textarea name="message" rows={4} className="w-full rounded-xl bg-transparent border px-3 py-2" />
       </div>
       <div className="pt-2 flex items-center gap-3">
-        <Button className="bg-aqua text-ink hover:opacity-90">Надіслати</Button>
+        <Button className="bg-aqua text-ink hover:opacity-90">Submit</Button>
         {status !== "idle" && (
           <span className={status === "ok" ? "text-green-400" : "text-red-400"}>{msg}</span>
         )}
       </div>
       <p className="mt-2 text-xs text-platinum-400">
-        Надсилаючи форму, ви погоджуєтесь з умовами і політикою приватності.
+        By submitting the form you agree to the terms and privacy policy
       </p>
     </form>
   );
 }
+

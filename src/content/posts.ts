@@ -9,17 +9,17 @@ export type PostMeta = {
 export const posts: PostMeta[] = [
   {
     slug: "risk-management-basics",
-    title: "Ризик-менеджмент: базові принципи",
+    title: "Risk management basics",
     excerpt:
-      "Що таке ризик на угоду, стоп-лос, просідання портфеля й чому дисципліна важливіша за емоції.",
+      "What risk per trade means stop loss portfolio drawdown and why discipline matters more than emotions",
     date: "2025-08-10",
     tags: ["risk", "strategy"],
   },
   {
     slug: "ml-signals-overview",
-    title: "Сигнали ML для крипторинку: огляд",
+    title: "ML signals for crypto market overview",
     excerpt:
-      "Класифікація ринкових режимів, імовірності входу/виходу та як ми уникаємо перенавчання.",
+      "Classification of market regimes entry exit probabilities and how we avoid overfitting",
     date: "2025-08-12",
     tags: ["ml", "signals"],
   },

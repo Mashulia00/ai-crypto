@@ -19,40 +19,40 @@ const plans: Plan[] = [
     name: "Starter",
     price: "$0",
     period: "/demo",
-    cta: "Спробувати демо",
+    cta: "Try demo",
     features: [
-      "Дашборд (read-only)",
-      "Живі графіки PnL/ціни (демо-дані)",
-      "Опис методології та ризиків",
-      "Пошта підтримки",
+      "Dashboard (read-only)",
+      "Live PnL/price charts (demo data)",
+      "Description of methodology and risks",
+      "Email support",
     ],
-    note: "Для ознайомлення. Без підключення бірж."
+    note: "For introduction Only without exchange connection."
   },
   {
     name: "Pro",
     price: "$29",
-    period: "/місяць",
+    period: "/month",
     highlight: true,
-    cta: "У чергу доступу",
+    cta: "Join waitlist",
     features: [
-      "Повний дашборд (демо-режим)",
-      "Ризик-параметри (read-only)",
-      "Алерти (email/телеграм) — демо",
-      "Приорітетні оновлення",
+      "Full dashboard (demo mode)",
+      "Risk parameters (read-only)",
+      "Alerts (email/telegram) — demo",
+      "Priority updates",
     ],
-    note: "Ціни — плейсхолдер. Жодних інвестобіцянок."
+    note: "Prices are placeholders No investment promises."
   },
   {
     name: "Institutional",
-    price: "Індивід.",
-    cta: "Звʼязатися",
+    price: "Individual",
+    cta: "Contact us",
     features: [
-      "Консультація з методології",
-      "Пілот на демо-даних",
-      "Звітність і ризик-фреймворк",
-      "Підтримка команди",
+      "Methodology consultation",
+      "Pilot on demo data",
+      "Reporting and risk framework",
+      "Team support",
     ],
-    note: "Лише за попереднім узгодженням."
+    note: "By prior agreement only."
   },
 ];
 

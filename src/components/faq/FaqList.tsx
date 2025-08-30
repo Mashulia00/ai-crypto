@@ -7,7 +7,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-/* Плавне авто-ростання/згортання висоти + «хмарна» поява контенту */
+/* Smooth auto expand/collapse height + soft fade-in */
 function SmoothContent({
   open,
   children,
@@ -27,14 +27,12 @@ function SmoothContent({
     const full = el.scrollHeight;
 
     if (open) {
-      // із 0 -> до реальної висоти, потім фіксуємо на auto
       setHeight(full);
       requestAnimationFrame(() => {
         setOpacity(1);
         setTranslate(0);
       });
     } else {
-      // спочатку встановлюємо поточну висоту, далі анімуємо до 0
       setHeight(full);
       requestAnimationFrame(() => {
         setHeight(0);
@@ -98,7 +96,7 @@ export default function FaqList({ items }: { items: Item[] }) {
               onPointerLeave={(e) => e.currentTarget.classList.remove("pressed")}
               onPointerCancel={(e) => e.currentTarget.classList.remove("pressed")}
             >
-              {/* Три колонки: номер • питання • одна стрілка */}
+              {/* Three columns: number • question • one arrow */}
               <AccordionTrigger
                 className="
                   group grid w-full grid-cols-[auto,1fr,auto] items-center gap-3

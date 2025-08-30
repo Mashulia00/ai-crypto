@@ -3,11 +3,13 @@
 import Link from "next/link";
 import { useRef } from "react";
 import { Button } from "@/components/ui/button";
+import Tr from "@/components/Tr";
+import { useLocale, withLocale } from "@/lib/locale";
 
 export default function Hero() {
   const wrapRef = useRef<HTMLDivElement>(null);
+  const locale = useLocale();
 
-  // неонова аура за курсором/пальцем (легка, mobile-first)
   const onMove = (e: React.PointerEvent<HTMLDivElement>) => {
     const el = e.currentTarget;
     const r = el.getBoundingClientRect();
@@ -22,7 +24,6 @@ export default function Hero() {
 
   return (
     <section className="relative overflow-hidden">
-      {/* аури/градієнти + реакція на курсор */}
       <div
         ref={wrapRef}
         onPointerMove={onMove}
@@ -31,40 +32,62 @@ export default function Hero() {
       >
         <div className="mx-auto max-w-6xl px-4 pt-16 pb-10">
           <h1 className="headline-glow text-balance text-5xl/tight font-extrabold sm:text-6xl/tight md:text-7xl/tight">
-            <span>ШІ-бот, що торгує&nbsp;</span>
-            <span className="inline-block relative">
-              24/7
-              <i aria-hidden className="mark-bar" />
-            </span>
-            <br className="hidden sm:block" />
-            <span>Прозоро</span>
-            <br className="hidden sm:block" />
-            <span>
-              З&nbsp;<b className="accent-word">ризик-менеджментом</b>
-            </span>
+            <Tr
+              en={
+                <>
+                  <span>AI bot that trades&nbsp;</span>
+                  <span className="inline-block relative">
+                    24/7.
+                    <i aria-hidden className="mark-bar" />
+                  </span>
+                  <br className="hidden sm:block" />
+                  <span>Transparently</span>
+                  <br className="hidden sm:block" />
+                  <span>
+                    &nbsp;<b className="accent-word">With risk management</b>
+                  </span>
+                </>
+              }
+              ru={
+                <>
+                  <span>AI-бот торгует&nbsp;</span>
+                  <span className="inline-block relative">
+                    24/7.
+                    <i aria-hidden className="mark-bar" />
+                  </span>
+                  <br className="hidden sm:block" />
+                  <span>Прозрачно</span>
+                  <br className="hidden sm:block" />
+                  <span>
+                    &nbsp;<b className="accent-word">С управлением рисками</b>
+                  </span>
+                </>
+              }
+            />
           </h1>
 
-          {/* неоновий “скан” під заголовком */}
           <div className="hero-surge mt-4" />
 
           <p className="mt-5 max-w-3xl text-lg text-platinum-200/90 md:text-xl">
-            Алгоритмічні стратегії з машинним навчанням допомагають
-            автоматизувати рутинні рішення та дисципліновано працювати з
-            ризиком.
+            <Tr
+              en="Algorithmic strategies with machine learning help automate routine decisions and manage risk with discipline."
+              ru="Алгоритмические стратегии с машинным обучением помогают автоматизировать рутинные решения и дисциплинированно управлять рисками."
+            />
           </p>
 
           <div className="mt-6 flex flex-wrap gap-3">
-            <Link href="/contact">
+            <Link href={withLocale("/contact", locale)}>
               <Button className="bg-aqua text-ink hover:opacity-90 btn-ripple">
-                Спробувати демо
+                <Tr en="Try demo" ru="Попробовать демо" />
               </Button>
             </Link>
-            <Link href="/how-it-works">
+
+            <Link href={withLocale("/how-it-works", locale)}>
               <Button
                 variant="outline"
                 className="glass border-white/10 btn-ripple"
               >
-                Дізнатися як це працює
+                <Tr en="Find out how it works" ru="Узнать, как это работает" />
               </Button>
             </Link>
           </div>

@@ -77,29 +77,25 @@ function Sparkline({
   );
 }
 
-/* ---------- APY з PnL (equity або кумулятивний %) ---------- */
+/* ---------- APY from PnL (equity or cumulative %) ---------- */
 function apyFromPnl(pointsIn: PnLPoint[]): number {
   if (!pointsIn || pointsIn.length < 2) return 0;
 
-  // нормалізуємо t до числа (рядок -> індекс), сортуємо
   const points = [...pointsIn]
     .map((p, i) => ({ t: typeof p.t === "number" ? p.t : i, v: Number(p.v) || 0 }))
     .sort((a, b) => a.t - b.t);
 
-  // якщо весь ряд нульовий — APY=0
   if (points.every((p) => Math.abs(p.v) < 1e-9)) return 0;
 
   const firstNZ = points.find((p) => Math.abs(p.v) > 1e-9)?.v ?? points[0].v;
   const last    = points.at(-1)!.v;
 
-  // equity vs cumulative %
   const absMax = Math.max(...points.map((p) => Math.abs(p.v)));
   const totalReturn =
     Math.abs(firstNZ) > 1 && Math.abs(last) > 1 && absMax > 10
-      ? last / firstNZ - 1                // equity
-      : (absMax > 2 ? last / 100 : last); // кумулятивний %
+      ? last / firstNZ - 1
+      : (absMax > 2 ? last / 100 : last);
 
-  // дні з msec; якщо 0 — беремо кроки як дні
   let days = (points.at(-1)!.t - points[0].t) / 86_400_000;
   if (!isFinite(days) || days <= 0) days = points.length - 1 || 1;
 
@@ -107,7 +103,7 @@ function apyFromPnl(pointsIn: PnLPoint[]): number {
   return Number((annualized * 100).toFixed(2));
 }
 
-/* якщо серія плоска — беремо друга серію для красивої кривої */
+/* if primary series is flat — use fallback for nicer curve */
 function pickSeries(primary: number[], fallback: number[]) {
   if (!primary || primary.length < 2) return fallback;
   const min = Math.min(...primary);
@@ -154,8 +150,7 @@ export function StatsKPI() {
   const pnl = (data?.pnl ?? []);
   const dd  = (data?.drawdown ?? []);
 
-  // значення для карток
-  const DEFAULT_APY = 28.4; // <-- можеш змінити на свій фіксований відсоток
+  const DEFAULT_APY = 28.4;
   const computedApy = typeof (data?.stats as any)?.apy === "number"
     ? (data!.stats as any).apy
     : apyFromPnl(pnl);
@@ -167,17 +162,16 @@ export function StatsKPI() {
   const maxDD   = (data?.stats as any)?.maxDD ?? (data?.stats as any)?.maxDrawdown ?? -12.3;
   const winRate = (data?.stats as any)?.winRate ?? 56.4;
 
-  // серії для спарклайнів
   const pnlVals = pnl.map(p => Number(p.v) || 0);
   const ddVals  = dd.map(p => Number(p.dd) || 0);
 
-  const apySeries  = pickSeries(pnlVals, ddVals); // якщо PnL плоский — підставимо DD
-  const winSeries  = pickSeries(pnlVals, ddVals); // для естетики так само
+  const apySeries  = pickSeries(pnlVals, ddVals);
+  const winSeries  = pickSeries(pnlVals, ddVals);
 
   return (
     <div className="grid gap-5 md:grid-cols-3">
       <KpiCard
-        label="APY* (демо)"
+        label="APY* (demo)"
         value={apy}
         suffix="%"
         color="var(--color-aqua)"

@@ -1,6 +1,4 @@
-// src/lib/types.ts
 
-// Сирі точки з API
 export type Point = { t: number; value: number };
 
 export type Stats = {
